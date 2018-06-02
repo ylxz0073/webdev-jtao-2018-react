@@ -13,8 +13,8 @@ ReactDOM.render(
 
     <div className="container-fluid">
         <CourseManager/>
-        <ModuleList/>
-        <Stateless message="this is a stateless component"/>
+
+        {/*<Stateless message="this is a stateless component"/>*/}
         {/*<CourseManager/>*/}
     </div>,
     document.getElementById('root')
