@@ -1,4 +1,5 @@
 import React from 'react';
+import CourseRow from "../Components/CourseRow";
 
 class CourseList extends React.Component {
     constructor() {
@@ -10,7 +11,12 @@ class CourseList extends React.Component {
                 <h2>Course List</h2>
                 <table className="table">
                     <thead><tr><th>Title</th></tr></thead>
-                    <tbody><tr><td>Course Row</td></tr></tbody>
+                    <tbody>
+                        <CourseRow/>
+                        <CourseRow/>
+                        <CourseRow/>
+                        <CourseRow/>
+                    </tbody>
                 </table>
             </div>
 
