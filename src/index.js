@@ -12,7 +12,7 @@ import App from "./examples/App"
 ReactDOM.render(
 
     <div className="container-fluid">
-        <App/>
+        <CourseManager/>
         <ModuleList/>
         <Stateless message="this is a stateless component"/>
         {/*<CourseManager/>*/}
