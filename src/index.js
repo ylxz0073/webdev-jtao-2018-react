@@ -10,7 +10,7 @@ import ModuleList from "./containers/ModuleList";
 
 ReactDOM.render(
 
-    <div class="container-fluid">
+    <div className="container-fluid">
         <ModuleList/>
         <Stateless message="this is a stateless component"/>
         {/*<CourseManager/>*/}

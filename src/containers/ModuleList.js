@@ -4,7 +4,9 @@ import ModuleListItem from '../Components/ModuleListItem';
 export default class ModuleList
     extends React.Component {
     constructor() { super();
-        this.state = { modules: [
+        this.state = {
+            module: { title: ''},
+            modules: [
                 {title: 'Module 1 - jQuery', id: 123},
                 {title: 'Module 2 - React', id: 234},
                 {title: 'Module 3 - Redux', id: 345},
@@ -13,7 +15,19 @@ export default class ModuleList
                 {title: 'Module 6 - MongoDB', id: 678},
             ]
         };
+        this.titleChanged = this.titleChanged.bind(this);
+        this.createModule = this.createModule.bind(this);
     }
+
+    createModule(event) {
+        console.log(this.state.module);
+    }
+
+    titleChanged(event) {
+        this.setState({module: {title: event.target.value}});
+        console.log(event.target.value);
+    }
+
 
     renderListOfModules() {
         let modules = this.state.modules
@@ -27,7 +41,17 @@ export default class ModuleList
     render() {
         return (
             <div>
-                {this.renderListOfModules()}
+                <br/>
+                <input className="form-control"
+                    onChange={this.titleChanged}
+                    placeholder="title"/>
+                <button className="btn btn-primary btn-block"
+                    onClick={this.createModule}>
+                    <i className="fa fa-plus"></i>
+                </button>
+                <ul className="list-group">
+                    {this.renderListOfModules()}
+                </ul>
             </div>
         )
     }
