@@ -15,7 +15,7 @@ export default class CourseManager extends Component {
                 <br/>
                 <LessonTabs/>
                 <ModuleList/>
-                <div class="card-deck">
+                <div className="card-deck">
                     <CourseCard/>
                     <CourseCard/>
                     <CourseCard/>

@@ -31,12 +31,10 @@ class PageUpdate extends React.Component {
     }
 
     componentDidMount() {
-        this.updatePage
-        (this.props.match.params.id);
+        this.updatePage(this.props.match.params.id);
     }
     componentWillReceiveProps(newProps) {
-        this.updatePage
-        (newProps.match.params.id);
+        this.updatePage(newProps.match.params.id);
     }
 
     updatePage(id) {
