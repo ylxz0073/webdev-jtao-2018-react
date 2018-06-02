@@ -7,10 +7,12 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import Stateless from './Components/Stateless'
 import ModuleListItem from "./Components/ModuleListItem";
 import ModuleList from "./containers/ModuleList";
+import App from "./examples/App"
 
 ReactDOM.render(
 
     <div className="container-fluid">
+        <App/>
         <ModuleList/>
         <Stateless message="this is a stateless component"/>
         {/*<CourseManager/>*/}
