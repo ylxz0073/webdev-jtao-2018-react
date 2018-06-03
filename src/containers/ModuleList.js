@@ -1,6 +1,6 @@
 import React from 'react'
 import ModuleListItem from '../Components/ModuleListItem';
-
+import ModuleService from '../services/ModuleService'
 export default class ModuleList
     extends React.Component {
     constructor(props) {
@@ -23,6 +23,8 @@ export default class ModuleList
         this.createModule = this.createModule.bind(this);
         this.setCourseId =
             this.setCourseId.bind(this);
+
+        this.moduleService = ModuleService.instance;
     }
 
     componentDidMount() {
@@ -37,7 +39,8 @@ export default class ModuleList
     }
 
     createModule(event) {
-        console.log(this.state.module);
+        // console.log(this.state.module);
+        this.moduleService.createModule(this.props.courseId, this.state.module)
     }
 
     titleChanged(event) {
@@ -50,7 +53,7 @@ export default class ModuleList
         let modules = this.state.modules
             .map(function(module){
                 return <ModuleListItem
-                    title={module.title} key={module.id}/>
+                    module={module} key={module.id}/>
             });
         return modules;}
 
