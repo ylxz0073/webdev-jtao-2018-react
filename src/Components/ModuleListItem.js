@@ -12,7 +12,7 @@ export default class ModuleListItem
         return (
 
             <li className="list-group-item">
-                <Link to={`/course/${this.props.courseId}/lesson/${this.props.module.id}/edit`}>
+                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}/edit`}>
                     {this.props.title}
                 </Link>
 

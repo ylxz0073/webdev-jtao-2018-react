@@ -1,6 +1,8 @@
 import React from 'react'
 import ModuleListItem from '../Components/ModuleListItem';
 import ModuleService from '../services/ModuleService'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+
 export default class ModuleList
     extends React.Component {
     constructor(props) {
@@ -99,21 +101,26 @@ export default class ModuleList
 
     render() {
         return (
-            <div>
-                <h3>Module List for course: {this.props.courseId}</h3>
-                <br/>
-                <input className="form-control"
-                    onChange={this.titleChanged}
-                       value={this.state.module.title}
-                    placeholder="title"/>
-                <button className="btn btn-primary btn-block"
-                    onClick={this.createModule}>
-                    <i className="fa fa-plus"></i>
-                </button>
-                <ul className="list-group">
-                    {this.renderListOfModules()}
-                </ul>
-            </div>
+
+                <div>
+                    <h3>Module List for course: {this.props.courseId}</h3>
+                    <br/>
+                    <input className="form-control"
+                        onChange={this.titleChanged}
+                           value={this.state.module.title}
+                        placeholder="title"/>
+                    <button className="btn btn-primary btn-block"
+                        onClick={this.createModule}>
+                        <i className="fa fa-plus"></i>
+                    </button>
+                    <ul className="list-group">
+                        {this.renderListOfModules()}
+                    </ul>
+
+                </div>
+
+
+
         )
     }
 }
