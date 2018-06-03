@@ -50,13 +50,26 @@ export default class ModuleList
 
 
     renderListOfModules() {
-        let modules = this.state.modules
-            .map(function(module){
-                return <ModuleListItem
-                    module={module} key={module.id}/>
-            });
-        return modules;}
+        let modules = this.state.modules.map((module) => {
+            return <li key={module.id}>{module.title}</li>
+        });
+        return (
+            <ul>{modules}</ul>
+        )
+    }
 
+
+    componentWillReceiveProps(newProps){
+        this.findAllModulesForCourse(newProps.courseId)
+    }
+    findAllModulesForCourse(courseId) {
+        this.moduleService
+            .findAllModulesForCourse(courseId)
+            .then((modules) => {this.setModules(modules)});
+    }
+    setModules(modules) {
+        this.setState({modules: modules})
+    }
 
     render() {
         return (
