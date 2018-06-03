@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
+import { Link } from 'react-router-dom'
 
 export default class ModuleListItem
     extends React.Component {
@@ -9,8 +10,12 @@ export default class ModuleListItem
     }
     render() {
         return (
+
             <li className="list-group-item">
-                {this.props.title}
+                <Link to={`/course/${this.props.courseId}/lesson/${this.props.module.id}/edit`}>
+                    {this.props.title}
+                </Link>
+
                 <span className='float-right'>
                     <button onClick={() =>
                         {this.props.delete(this.props.module.id)}}>

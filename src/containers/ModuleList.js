@@ -74,6 +74,7 @@ export default class ModuleList
             return <ModuleListItem key={module.id}
                                    delete={this.deleteModule}
                                    title={module.title}
+                                   courseId={this.props.courseId}
                                     module={module}>
                     </ModuleListItem>
         });
