@@ -9,12 +9,7 @@ export default class ModuleList
             courseId: '',
             module: { title: ''},
             modules: [
-                {title: 'Module 1 - jQuery', id: 123},
-                {title: 'Module 2 - React', id: 234},
-                {title: 'Module 3 - Redux', id: 345},
-                {title: 'Module 4 - Angular', id: 456},
-                {title: 'Module 5 - Node.js', id: 567},
-                {title: 'Module 6 - MongoDB', id: 678},
+
             ]
         };
 
@@ -23,11 +18,13 @@ export default class ModuleList
         this.createModule = this.createModule.bind(this);
         this.setCourseId =
             this.setCourseId.bind(this);
+        this.deleteModule = this.deleteModule.bind(this);
 
         this.moduleService = ModuleService.instance;
     }
 
     componentDidMount() {
+
         this.setCourseId(this.props.courseId);
     }
     componentWillReceiveProps(newProps){
@@ -35,13 +32,35 @@ export default class ModuleList
     }
 
     setCourseId(courseId) {
+        console.log(courseId);
         this.setState({courseId: courseId});
     }
 
     createModule(event) {
-        // console.log(this.state.module);
-        this.moduleService.createModule(this.props.courseId, this.state.module)
+
+        var newModel = {title: 'new module'}; // default
+        if (this.state.module.title != "") {
+            newModel = this.state.module;
+
+        }
+
+        this.moduleService.createModule(this.props.courseId, newModel).then(() => {
+            this.findAllModulesForCourse
+            (this.props.courseId)
+        });
+
+
     }
+
+    deleteModule(moduleId) {
+        this.moduleService
+            .deleteModule(this.props.courseId,moduleId)
+            .then(() => {
+                this.findAllModulesForCourse
+                (this.props.courseId)
+            });
+    }
+
 
     titleChanged(event) {
         this.setState({module: {title: event.target.value}});
@@ -50,12 +69,18 @@ export default class ModuleList
 
 
     renderListOfModules() {
-        let modules = this.state.modules.map((module) => {
-            return <li key={module.id}>{module.title}</li>
+        let modules = this.state.modules.map(
+            (module) => {
+            return <ModuleListItem key={module.id}
+                                   delete={this.deleteModule}
+                                   title={module.title}
+                                    module={module}>
+                    </ModuleListItem>
         });
         return (
-            <ul>{modules}</ul>
+            modules
         )
+
     }
 
 
@@ -74,7 +99,7 @@ export default class ModuleList
     render() {
         return (
             <div>
-                <h3>Module List for course: {this.state.courseId}</h3>
+                <h3>Module List for course: {this.props.courseId}</h3>
                 <br/>
                 <input className="form-control"
                     onChange={this.titleChanged}

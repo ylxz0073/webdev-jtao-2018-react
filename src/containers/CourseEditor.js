@@ -19,6 +19,7 @@ export default class CourseEditor
 
     selectCourse(courseId) {
         this.setState({courseId: courseId});
+        // console.log(courseId);
     }
 
     render() { return(
