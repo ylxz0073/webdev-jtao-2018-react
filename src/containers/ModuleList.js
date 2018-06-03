@@ -3,8 +3,10 @@ import ModuleListItem from '../Components/ModuleListItem';
 
 export default class ModuleList
     extends React.Component {
-    constructor() { super();
+    constructor(props) {
+        super();
         this.state = {
+            courseId: '',
             module: { title: ''},
             modules: [
                 {title: 'Module 1 - jQuery', id: 123},
@@ -15,8 +17,23 @@ export default class ModuleList
                 {title: 'Module 6 - MongoDB', id: 678},
             ]
         };
+
+
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
+        this.setCourseId =
+            this.setCourseId.bind(this);
+    }
+
+    componentDidMount() {
+        this.setCourseId(this.props.courseId);
+    }
+    componentWillReceiveProps(newProps){
+        this.setCourseId(newProps.courseId);
+    }
+
+    setCourseId(courseId) {
+        this.setState({courseId: courseId});
     }
 
     createModule(event) {
@@ -41,9 +58,11 @@ export default class ModuleList
     render() {
         return (
             <div>
+                <h3>Module List for course: {this.state.courseId}</h3>
                 <br/>
                 <input className="form-control"
                     onChange={this.titleChanged}
+                       value={this.state.module.title}
                     placeholder="title"/>
                 <button className="btn btn-primary btn-block"
                     onClick={this.createModule}>

@@ -26,7 +26,8 @@ export default class CourseEditor
             <h2>Editing Course: {this.state.courseId}</h2>
             <div className="row">
                 <div className="col-4">
-                    <ModuleList/>
+                    <ModuleList
+                        courseId={this.state.courseId}/>
                 </div>
                 <div className="col-8">
                     <LessonTabs/>
