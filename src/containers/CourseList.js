@@ -10,6 +10,7 @@ class CourseList extends React.Component {
         this.state = {courses:[]};
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this);
     }
 
     componentDidMount() {
@@ -20,7 +21,7 @@ class CourseList extends React.Component {
         this.courseService
             .findAllCourses()
             .then((courses) => {
-                console.log(courses);
+                // console.log(courses);
                 this.setState({courses: courses});
             });
     }
@@ -32,11 +33,12 @@ class CourseList extends React.Component {
         console.log(this.state)
         if (this.state) {
             courses = this.state.courses.map(
-                function(course) {
-                    return <CourseRow key={course.id}
-                                      course={course}/>
-                }
-            )
+                (course) => {
+                    return <CourseRow course={course} key={course.id}
+                                      delete={this.deleteCourse}/>
+                })
+
+
         }
         return (
             courses
@@ -60,29 +62,46 @@ class CourseList extends React.Component {
 
     }
 
-    render() {
-        return (
-            <div>
-                <h2>Course List</h2>
-                <table className="table">
-                    <thead>
-                        <tr><th>Title</th></tr>
-                        <tr>
-                            <th><input onChange={this.titleChanged}
-                                       className="form-control" id="titleFld"
-                                       placeholder="cs101"/></th>
-                            <th><button onClick={this.createCourse}
-                                        className="btn btn-primary">
-                                Add</button></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderCourseRows()}
-                    </tbody>
-                </table>
-            </div>
+    deleteCourse(courseId) {
+        this.courseService
+            .deleteCourse(courseId)
+            .then( () => {
+                this.findAllCourses();
 
-        )
+            });
+
     }
-}
-export default CourseList;
+
+
+
+    render() {
+            return (
+                <div>
+                    <h2>Course List</h2>
+                    <table className="table">
+                        <thead>
+
+                            <tr>
+                                <th><input onChange={this.titleChanged}
+                                           className="form-control" id="titleFld"
+                                           placeholder="cs101"/></th>
+                                <th><button onClick={this.createCourse}
+                                            className="btn btn-primary">
+                                    Add</button></th>
+                            </tr>
+                            <tr>
+                                <th>Title</th>
+                                <th>Owned by</th>
+                                <th>Last modified by me</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.renderCourseRows()}
+                        </tbody>
+                    </table>
+                </div>
+
+            )
+        }
+    }
+    export default CourseList;

@@ -23,6 +23,7 @@ class CourseRow extends React.Component {
         }
     }
 
+
     render() {
         return (
             <tr>
@@ -36,7 +37,11 @@ class CourseRow extends React.Component {
                     me
                 </td>
                 {this.renderDateStamp()}
-
+                <td><button className="btn btn-primary"
+                            id={this.props.course.id}
+                            onClick={() => {this.props.delete(this.props.course.id)}}>
+                    Delete</button>
+                </td>
             </tr>
         )
     }
