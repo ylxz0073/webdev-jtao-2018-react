@@ -29,13 +29,15 @@ class CourseList extends React.Component {
     renderCourseRows() {
         let courses = null;
 
-        console.log("render course rows")
-        console.log(this.state)
+        // console.log("render course rows")
+        // console.log(this.state)
         if (this.state) {
             courses = this.state.courses.map(
                 (course) => {
+
                     return <CourseRow course={course} key={course.id}
-                                      delete={this.deleteCourse}/>
+                                      delete={this.deleteCourse}
+                                        />
                 })
 
 
@@ -46,6 +48,12 @@ class CourseList extends React.Component {
     }
 
     titleChanged(event) {
+        // var dateStamp= Date();
+        // console.log(dateStamp.toString());
+        // this.setState({
+        //     course: {created: dateStamp.toString(),
+        //         modified: dateStamp.toString()}
+        // });
         this.setState({
             course: { title: event.target.value }
         });
@@ -53,6 +61,13 @@ class CourseList extends React.Component {
     }
 
     createCourse() {
+        // var dateStamp= Date();
+        // console.log(dateStamp);
+        // this.setState({
+        //     course: {created: dateStamp.toString(),
+        //             modified: dateStamp.toString()}
+        // });
+        // console.log(this.state.course);
         this.courseService
             .createCourse(this.state.course)
             .then( () => {

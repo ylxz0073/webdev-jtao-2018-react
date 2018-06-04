@@ -116,6 +116,9 @@ export default class ModuleList
                     <ul className="list-group">
                         {this.renderListOfModules()}
                     </ul>
+                    {/*<div id="wbdv-alert-success" display="none" class="alert alert-success alert-dismissible fade show" role="alert">*/}
+                        {/*<strong>Great!</strong> Update successfully.*/}
+                    {/*</div>*/}
 
                 </div>
 

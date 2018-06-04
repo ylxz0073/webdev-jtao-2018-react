@@ -66,6 +66,7 @@ export default class LessonTabs
             });
     }
 
+
     titleChanged(event) {
         this.setState({lesson: {title: event.target.value}});
         console.log(event.target.value);
@@ -109,6 +110,7 @@ export default class LessonTabs
     setLessons(lessons) {
         this.setState({lessons: lessons})
     }
+
 
     render() {
         return(

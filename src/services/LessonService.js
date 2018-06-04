@@ -1,6 +1,7 @@
 const LESSON_API_URL =
     'http://localhost:8080/api/course/CID/module/MID/lesson';
-
+const ALL_LESSON_API_URL =
+    'http://localhost:8080/api/lesson';
 
 let _singleton = Symbol();
 export default class LessonService {
@@ -31,6 +32,14 @@ export default class LessonService {
             .then(function (response) {
                 return response.json();
             })
+    }
+
+    findAllLessons(){
+        return fetch(
+            ALL_LESSON_API_URL
+        ).then(function(response){
+            return response.json();
+        })
     }
 
     deleteLesson(lessonId) {

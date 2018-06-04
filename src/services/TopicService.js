@@ -1,6 +1,7 @@
 const TOPIC_API_URL =
     'http://localhost:8080/api/course/CID/module/MID/lesson/LID/topic';
-
+const ALL_TOPIC_API_URL =
+    'http://localhost:8080/api/topic'
 
 let _singleton = Symbol();
 export default class TopicService {
@@ -31,6 +32,12 @@ export default class TopicService {
             .then(function (response) {
                 return response.json();
             })
+    }
+
+    findALlTopics() {
+        return fetch(ALL_TOPIC_API_URL).then(function(response){
+            return response.json();
+        })
     }
 
     deleteTopic(topicId) {

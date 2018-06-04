@@ -23,7 +23,15 @@ class CourseService {
             });
     }
 
+    findCourseById(courseId) {
+        return fetch(COURSE_API_URL + '/' + courseId)
+            .then(function(response){
+                return response.json();
+            });
+    }
+
     createCourse(course) {
+        console.log(course);
         return fetch(COURSE_API_URL, {
             body: JSON.stringify(course),
             headers: {

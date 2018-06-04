@@ -1,6 +1,7 @@
 const MODULE_API_URL =
     'http://localhost:8080/api/course/CID/module';
-
+const ALL_MODULE_API_URL =
+    'http://localhost:8080/api/module';
 
 let _singleton = Symbol();
 export default class ModuleService {
@@ -30,6 +31,14 @@ export default class ModuleService {
             .then(function (response) {
                 return response.json();
             })
+    }
+
+    findAllModules(courseId) {
+        return fetch(
+            ALL_MODULE_API_URL
+        ).then(function (response){
+            return response.json();
+        })
     }
 
     deleteModule(courseId, moduleId) {

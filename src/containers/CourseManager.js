@@ -5,7 +5,7 @@ import LessonTabs from './LessonTabs'
 import CourseEditor from './CourseEditor'
 import CourseList from "./CourseList";
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 export default class CourseManager extends Component {
     render() {
