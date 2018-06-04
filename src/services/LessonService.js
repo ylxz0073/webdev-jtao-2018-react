@@ -14,14 +14,14 @@ export default class LessonService {
         return this[_singleton]
     }
 
-    // createModule(courseId, module) {
-    //     return fetch(MODULE_API_URL.replace('CID', courseId),
-    //         {   body: JSON.stringify(module),
-    //             headers: { 'Content-Type': 'application/json' },
-    //             method: 'POST'
-    //         }).then(function (response)
-    //     { return response.json(); })
-    // }
+    createLesson(moduleId, lesson) {
+        return fetch(LESSON_API_URL.replace('MID', moduleId),
+            {   body: JSON.stringify(lesson),
+                headers: { 'Content-Type': 'application/json' },
+                method: 'POST'
+            }).then(function (response)
+        { return response.json(); })
+    }
 
     findAllLessonsForModule(courseId, moduleId) {
         return fetch(
