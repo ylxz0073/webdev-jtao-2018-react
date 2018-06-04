@@ -1,4 +1,5 @@
 import React from "react";
+import TopicList from "./TopicList"
 
 export default class LessonEditor
     extends React.Component {
@@ -61,7 +62,10 @@ export default class LessonEditor
                     <span>moduleId: {this.state.moduleId} </span>
                     <span>lessonId: {this.state.lessonId} </span>
                 </div>
-
+                <div><TopicList
+                    courseId={this.state.courseId}
+                    moduleId={this.state.moduleId}
+                    lessonId={this.state.lessonId}/></div>
             </div>
 
 
