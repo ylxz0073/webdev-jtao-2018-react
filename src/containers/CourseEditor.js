@@ -19,7 +19,7 @@ export default class CourseEditor
 
     componentDidMount() {
         // console.log("###courseTitle: ");
-        console.log(this.props);
+        // console.log(this.props);
         this.selectCourse
         (this.props.match.params.courseId);
         // console.log(this.state);

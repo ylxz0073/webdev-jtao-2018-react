@@ -10,6 +10,7 @@ export default class ModuleList
         this.state = {
             courseId: '',
             module: { title: ''},
+            highlight: '',
             modules: [
 
             ]
@@ -21,7 +22,7 @@ export default class ModuleList
         this.setCourseId =
             this.setCourseId.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
-
+        this.highlightModule = this.highlightModule.bind(this);
         this.moduleService = ModuleService.instance;
     }
 
@@ -63,10 +64,17 @@ export default class ModuleList
             });
     }
 
+    highlightModule(moduleId) {
+        // console.log("highlight: " + moduleId);
+        this.setState({highlight: moduleId});
+        // console.log(this.state.highlight);
+
+    }
+
 
     titleChanged(event) {
         this.setState({module: {title: event.target.value}});
-        console.log(event.target.value);
+        // console.log(event.target.value);
     }
 
 
@@ -76,6 +84,8 @@ export default class ModuleList
             return <ModuleListItem key={module.id}
                                    delete={this.deleteModule}
                                    title={module.title}
+                                   highlight={this.highlightModule}
+                                   highlightId={this.state.highlight}
                                    courseId={this.props.courseId}
                                     module={module}>
                     </ModuleListItem>
@@ -93,7 +103,9 @@ export default class ModuleList
     findAllModulesForCourse(courseId) {
         this.moduleService
             .findAllModulesForCourse(courseId)
-            .then((modules) => {this.setModules(modules)});
+            .then((modules) => {
+                // console.log(modules);
+                this.setModules(modules)});
     }
     setModules(modules) {
         this.setState({modules: modules})

@@ -81,7 +81,7 @@ export default class TopicList
     }
 
     renderListOfTopics() {
-        console.log(this.state.topics);
+        // console.log(this.state.topics);
         let topics = this.state.topics.map(
             (topic) => {
 

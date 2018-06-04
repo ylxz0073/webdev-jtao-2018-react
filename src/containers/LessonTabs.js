@@ -10,6 +10,7 @@ export default class LessonTabs
         this.state = {
             courseId: "",
             moduleId: "",
+            highlight: "",
             lesson: {title:"",
                     },
             lessons:[]};
@@ -18,6 +19,7 @@ export default class LessonTabs
         this.deleteLesson = this.deleteLesson.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
+        this.highlightLesson = this.highlightLesson.bind(this);
         this.lessonService = LessonService.instance;
     }
 
@@ -32,12 +34,12 @@ export default class LessonTabs
     }
 
     setCourseId(courseId) {
-        console.log(courseId);
+        // console.log(courseId);
         this.setState({courseId: courseId});
     }
 
     setModuleId(moduleId) {
-        console.log(moduleId);
+        // console.log(moduleId);
         this.setState({moduleId: moduleId});
     }
 
@@ -66,14 +68,21 @@ export default class LessonTabs
             });
     }
 
+    highlightLesson(lessonId) {
+        console.log("highlight: " + lessonId);
+        this.setState({highlight: lessonId});
+        // console.log(this.state.highlight);
+
+    }
+
 
     titleChanged(event) {
         this.setState({lesson: {title: event.target.value}});
-        console.log(event.target.value);
+        // console.log(event.target.value);
     }
 
     renderListOfLessons() {
-        console.log(this.state.lessons);
+        // console.log(this.state.lessons);
         let lessons = this.state.lessons.map(
             (lesson) => {
 
@@ -85,6 +94,8 @@ export default class LessonTabs
                                      lesson={lesson}
                                       title={lesson.title}
                                       delete={this.deleteLesson}
+                                      highlight={this.highlightLesson}
+                                      highlightId={this.state.highlight}
                                     >
                </LessonTabItem>)
 

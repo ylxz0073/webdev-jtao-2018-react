@@ -7,19 +7,39 @@ export default class ModuleListItem
     extends React.Component {
     constructor(props) {
         super(props);
+
     }
+
+
     render() {
+
+        var highlightStyle = {
+        };
+        // console.log(this.props.module.id);
+        // console.log(this.props.highlightId);
+
+        if (this.props.module.id == this.props.highlightId) {
+            highlightStyle = {
+                backgroundColor: 'pink'
+            };
+        }
+
         return (
 
 
-            <li className="list-group-item">
-                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}/edit`}>
+
+            <li className="list-group-item" style={highlightStyle}>
+                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}/edit`}
+                      onClick={() =>
+                      {this.props.highlight(this.props.module.id)
+                      }}>
                     {this.props.title}
                 </Link>
 
                 <span className='float-right'>
                     <button onClick={() =>
-                        {this.props.delete(this.props.module.id)}}>
+                        {this.props.delete(this.props.module.id)
+                        }}>
                     DELETE</button>
 
 

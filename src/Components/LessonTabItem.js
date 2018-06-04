@@ -8,12 +8,26 @@ export default class LessonTabItem
     constructor(props) {
         super(props);
     }
+
     render() {
+        var highlightStyle = {
+        };
+        // console.log(this.props.lesson.id);
+        // console.log(this.props.highlightId);
+
+        if (this.props.lesson.id == this.props.highlightId) {
+            highlightStyle = {
+                backgroundColor: 'pink'
+            };
+        }
         return (
 
-            <li className="nav-item">
+            <li className="nav-item" style={highlightStyle}>
 
-                    <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`}>
+                    <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`}
+                          onClick={() =>
+                          {this.props.highlight(this.props.lesson.id)
+                          }}>
                         {this.props.title}
                     </Link>
 

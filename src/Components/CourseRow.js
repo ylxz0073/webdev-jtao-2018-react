@@ -54,7 +54,9 @@ class CourseRow extends React.Component {
                     {this.renderDateStamp()}
                     <td><button className="btn btn-primary"
                                 id={this.props.course.id}
-                                onClick={() => {this.props.delete(this.props.course.id)}}>
+                                onClick={() => {
+                                    this.props.delete(this.props.course.id)
+                                    }}>
                         Delete</button>
                     </td>
 
