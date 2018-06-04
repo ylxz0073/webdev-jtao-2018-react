@@ -11,15 +11,15 @@ export default class CourseManager extends Component {
     render() {
         return (
             <Router>
+
                 <div className="container-fluid">
                     <h1>Course Manager</h1>
                     <Route path="/courses"
                            component={CourseList}>
                     </Route>
-                    <Route path="/course/:courseId/edit"
+                    <Route path="/course/:courseId/"
                            component={CourseEditor}>
                     </Route>
-
 
                     {/*<Route path="/examples">*/}
                         {/*<div>*/}

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import CourseEditor from "../containers/CourseEditor";
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 class CourseRow extends React.Component {
     constructor(props) {
@@ -26,23 +28,26 @@ class CourseRow extends React.Component {
 
     render() {
         return (
-            <tr>
-                <td>
-                    <Link to={`/course/${this.props.course.id}/edit`}>
-                        {this.props.course.title}
-                    </Link>
 
-                </td>
-                <td>
-                    me
-                </td>
-                {this.renderDateStamp()}
-                <td><button className="btn btn-primary"
-                            id={this.props.course.id}
-                            onClick={() => {this.props.delete(this.props.course.id)}}>
-                    Delete</button>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <Link to={`/course/${this.props.course.id}/edit`}>
+                            {this.props.course.title}
+                        </Link>
+
+                    </td>
+                    <td>
+                        me
+                    </td>
+                    {this.renderDateStamp()}
+                    <td><button className="btn btn-primary"
+                                id={this.props.course.id}
+                                onClick={() => {this.props.delete(this.props.course.id)}}>
+                        Delete</button>
+                    </td>
+
+                </tr>
+
         )
     }
 }
