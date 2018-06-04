@@ -36,7 +36,7 @@ export default class CourseEditor
                 <div className="col-8">
                     {/*<LessonTabs/>*/}
 
-                    <Route path= "/course/:courseId/module/:moduleId/edit"
+                    <Route path= "/course/:courseId/module/:moduleId"
                            component= {ModuleEditor}/>
                 </div>
             </div>

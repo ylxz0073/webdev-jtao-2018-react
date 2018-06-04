@@ -75,9 +75,14 @@ export default class LessonTabs
         console.log(this.state.lessons);
         let lessons = this.state.lessons.map(
             (lesson) => {
+
                 // console.log(lesson);
                return (<LessonTabItem key={lesson.id}
+                                    lessonId={lesson.id}
+                                      courseId={this.props.courseId}
+                                      moduleId={this.props.moduleId}
                                      lesson={lesson}
+                                      title={lesson.title}
                                       delete={this.deleteLesson}
                                     >
                </LessonTabItem>)

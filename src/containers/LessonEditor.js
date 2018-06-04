@@ -1,21 +1,19 @@
-import React from 'react';
-import LessonTabs from './LessonTabs';
-import LessonEditor from './LessonEditor'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import React from "react";
 
-export default class ModuleEditor
+export default class LessonEditor
     extends React.Component {
-
     constructor(props) {
         super(props);
         this.setCourseId =
             this.setCourseId.bind(this);
         this.setModuleId =
             this.setModuleId.bind(this);
+        this.setLessonId =
+            this.setLessonId.bind(this);
         this.state = {
-            courseId: '', moduleId: ''
-        };}
-
+            courseId: '', moduleId: '', lessonId: ''
+        };
+    }
 
     setCourseId(courseId) {
         this.setState
@@ -25,6 +23,11 @@ export default class ModuleEditor
         this.setState
         ({moduleId: moduleId});
     }
+    setLessonId(lessonId) {
+        this.setState
+        ({lessonId: lessonId});
+    }
+
 
     componentDidMount() {
         this.setCourseId(
@@ -32,6 +35,9 @@ export default class ModuleEditor
 
         this.setModuleId(
             this.props.match.params.moduleId);
+
+        this.setLessonId(
+            this.props.match.params.lessonId);
     }
 
     componentWillReceiveProps(newProps) {
@@ -40,24 +46,27 @@ export default class ModuleEditor
 
         this.setModuleId(
             newProps.match.params.moduleId);
+
+        this.setLessonId(
+            this.props.match.params.lessonId);
     }
 
-
-
-    render(props) {
+    render() {
         return (
 
             <div>
-                <h1>Module Editor</h1>
-                <div>courseId: {this.state.courseId}</div>
-                <div>moduleId: {this.state.moduleId}</div>
+                <h4>Lesson Editor</h4>
+                <div>
+                    <span>courseId: {this.state.courseId} </span>
+                    <span>moduleId: {this.state.moduleId} </span>
+                    <span>lessonId: {this.state.lessonId} </span>
+                </div>
 
-                <div><LessonTabs
-                    courseId={this.state.courseId}
-                    moduleId={this.state.moduleId}/></div>
-                <Route path= "/course/:courseId/module/:moduleId/lesson/:lessonId"
-                            component= {LessonEditor}/>
             </div>
 
-        )}
+
+
+        )
+    }
+
 }

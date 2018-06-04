@@ -12,13 +12,14 @@ export default class LessonTabItem
         return (
 
             <li className="nav-item">
-                <a className="nav-link active"
-                   >
-                    {this.props.lesson.title}
+
+                    <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}`}>
+                        {this.props.title}
+                    </Link>
+
                     <button onClick={() =>
                     {this.props.delete(this.props.lesson.id)}}>
                         X</button>
-                </a>
 
             </li>
         );
