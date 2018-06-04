@@ -35,7 +35,7 @@ export default class ModuleService {
     deleteModule(courseId, moduleId) {
         return fetch(
             MODULE_API_URL
-                .replace('CID', courseId) + '/' + moduleId, {
+                .replace('CID', courseId)+ '/' + moduleId, {
             method: 'delete'
         })
     }

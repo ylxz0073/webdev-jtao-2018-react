@@ -15,7 +15,11 @@ export default class LessonTabItem
                 <a className="nav-link active"
                    >
                     {this.props.lesson.title}
+                    <button onClick={() =>
+                    {this.props.delete(this.props.lesson.id)}}>
+                        X</button>
                 </a>
+
             </li>
         );
     }

@@ -20,26 +20,25 @@ export default class LessonService {
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
             }).then(function (response)
-        { return response.json(); })
+        {
+            return response.json(); })
     }
 
-    findAllLessonsForModule(courseId, moduleId) {
+    findAllLessonsForModule(moduleId) {
         return fetch(
             LESSON_API_URL
-                .replace('CID', courseId)
             .replace('MID', moduleId))
             .then(function (response) {
                 return response.json();
             })
     }
 
-    // deleteModule(courseId, moduleId) {
-    //     return fetch(
-    //         MODULE_API_URL
-    //             .replace('CID', courseId) + '/' + moduleId, {
-    //             method: 'delete'
-    //         })
-    // }
+    deleteLesson(lessonId) {
+        return fetch(
+            LESSON_API_URL + '/' + lessonId, {
+                method: 'delete'
+            })
+    }
 
 
 }

@@ -15,8 +15,9 @@ export default class LessonTabs
             lessons:[]};
         this.titleChanged = this.titleChanged.bind(this);
         this.createLesson = this.createLesson.bind(this);
-        // this.deleteCourse = this.deleteCourse.bind(this);
-        // this.setLessonId = this.setLessonId.bind(this);
+        this.deleteLesson = this.deleteLesson.bind(this);
+        this.setCourseId = this.setCourseId.bind(this);
+        this.setModuleId = this.setModuleId.bind(this);
         this.lessonService = LessonService.instance;
     }
 
@@ -42,18 +43,27 @@ export default class LessonTabs
 
     createLesson(event) {
 
-        var newLesson = {title: 'new module'}; // default
+        var newLesson = {title: 'new lesson'}; // default
         if (this.state.lesson.title != "") {
             newLesson = this.state.lesson;
 
         }
 
-        this.lessonService.createLesson(this.props.courseId, newLesson).then(() => {
+        this.lessonService.createLesson(this.props.moduleId, newLesson).then(() => {
             this.findAllLessonsForModule
-            (this.props.courseId, this.props.moduleId)
+            (this.props.moduleId)
         });
 
 
+    }
+
+    deleteLesson(lessonId) {
+        this.lessonService
+            .deleteLesson(lessonId)
+            .then(() => {
+                this.findAllLessonsForModule
+                (this.props.moduleId)
+            });
     }
 
     titleChanged(event) {
@@ -65,15 +75,10 @@ export default class LessonTabs
         console.log(this.state.lessons);
         let lessons = this.state.lessons.map(
             (lesson) => {
-                // return <ModuleListItem key={module.id}
-                //                        delete={this.deleteModule}
-                //                        title={module.title}
-                //                        courseId={this.props.courseId}
-                //                        module={module}>
-                // </ModuleListItem>
                 // console.log(lesson);
                return (<LessonTabItem key={lesson.id}
                                      lesson={lesson}
+                                      delete={this.deleteLesson}
                                     >
                </LessonTabItem>)
 
@@ -86,11 +91,11 @@ export default class LessonTabs
 
 
     componentWillReceiveProps(newProps){
-        this.findAllLessonsForModule(newProps.courseId, newProps.moduleId)
+        this.findAllLessonsForModule(newProps.moduleId)
     }
-    findAllLessonsForModule(courseId, moduleId) {
+    findAllLessonsForModule(moduleId) {
         this.lessonService
-            .findAllLessonsForModule(courseId, moduleId)
+            .findAllLessonsForModule(moduleId)
             .then((lessons) => {
                 // console.log(lessons);
                 this.setLessons(lessons)
@@ -112,18 +117,6 @@ export default class LessonTabs
                     <i className="fa fa-plus"></i>
                 </button>
                 <ul className="nav nav-tabs">
-                    <li className="nav-item">
-                        <a className="nav-link active"
-                           href="#">
-                            Active Tab
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link"
-                           href="#">
-                            Another Tab
-                        </a>
-                    </li>
                     {this.renderListOfLessons()}
                 </ul>
             </div>
