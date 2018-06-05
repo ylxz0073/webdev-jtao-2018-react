@@ -1,7 +1,7 @@
 const TOPIC_API_URL =
-    'http://localhost:8080/api/course/CID/module/MID/lesson/LID/topic';
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/course/CID/module/MID/lesson/LID/topic';
 const ALL_TOPIC_API_URL =
-    'http://localhost:8080/api/topic'
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/topic'
 
 let _singleton = Symbol();
 export default class TopicService {

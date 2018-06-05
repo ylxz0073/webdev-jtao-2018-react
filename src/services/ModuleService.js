@@ -1,7 +1,7 @@
 const MODULE_API_URL =
-    'http://localhost:8080/api/course/CID/module';
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/course/CID/module';
 const ALL_MODULE_API_URL =
-    'http://localhost:8080/api/module';
+    'https://jtao-webdev-hw-2018.herokuapp.com/api/module';
 
 let _singleton = Symbol();
 export default class ModuleService {
