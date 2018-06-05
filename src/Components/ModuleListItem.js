@@ -20,7 +20,7 @@ export default class ModuleListItem
 
         if (this.props.module.id == this.props.highlightId) {
             highlightStyle = {
-                backgroundColor: 'pink'
+                backgroundColor: 'lightgreen'
             };
         }
 
@@ -37,6 +37,8 @@ export default class ModuleListItem
                 </Link>
 
                 <span className='float-right'>
+                    {/*<i class="fa fa-trash-alt"></i>*/}
+                    {/*<i class="fa-2x fa fa-plus wbdv-create"></i>*/}
                     <button onClick={() =>
                         {this.props.delete(this.props.module.id)
                         }}>

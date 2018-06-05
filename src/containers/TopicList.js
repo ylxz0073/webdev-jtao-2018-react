@@ -63,7 +63,7 @@ export default class TopicList
             (this.props.lessonId)
         });
 
-
+        alert("add success");
     }
 
     deleteTopic(topicId) {
@@ -73,6 +73,7 @@ export default class TopicList
                 this.findAllTopicsForLesson
                 (this.props.lessonId)
             });
+        alert("delete success");
     }
 
     titleChanged(event) {
@@ -123,15 +124,19 @@ export default class TopicList
     render() {
         return(
             <div>
-                topic list
-                <input className="form-control"
-                       onChange={this.titleChanged}
-                       value={this.state.topic.title}
-                       placeholder="title"/>
-                <button className="btn btn-primary btn-block"
-                        onClick={this.createTopic}>
-                    <i className="fa fa-plus"></i>
-                </button>
+                <div className="input-group">
+                    <input className="form-control"
+                           onChange={this.titleChanged}
+                           value={this.state.topic.title}
+                           placeholder="title"/>
+                    <div className="input-group-append">
+
+                        <button className="btn btn-primary btn-block"
+                                onClick={this.createTopic}>
+                            <i className="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
                 <ul className="list-group">
                     {this.renderListOfTopics()}
                 </ul>

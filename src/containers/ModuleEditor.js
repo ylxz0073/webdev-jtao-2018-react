@@ -47,10 +47,11 @@ export default class ModuleEditor
     render(props) {
         return (
 
+
             <div>
-                <h1>Module Editor</h1>
-                <div>courseId: {this.state.courseId}</div>
-                <div>moduleId: {this.state.moduleId}</div>
+                {/*<h1>Module Editor</h1>*/}
+                {/*<div>courseId: {this.state.courseId}</div>*/}
+                {/*<div>moduleId: {this.state.moduleId}</div>*/}
 
                 <div><LessonTabs
                     courseId={this.state.courseId}

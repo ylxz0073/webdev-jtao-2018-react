@@ -17,7 +17,7 @@ export default class LessonTabItem
 
         if (this.props.lesson.id == this.props.highlightId) {
             highlightStyle = {
-                backgroundColor: 'pink'
+                backgroundColor: 'lightgreen'
             };
         }
         return (

@@ -51,7 +51,7 @@ export default class ModuleList
             this.findAllModulesForCourse
             (this.props.courseId)
         });
-
+        alert("add success");
 
     }
 
@@ -62,6 +62,7 @@ export default class ModuleList
                 this.findAllModulesForCourse
                 (this.props.courseId)
             });
+        alert("delete success");
     }
 
     highlightModule(moduleId) {
@@ -115,16 +116,18 @@ export default class ModuleList
         return (
 
                 <div>
-                    <h3>Module List for course: {this.props.courseId}</h3>
-                    <br/>
-                    <input className="form-control"
-                        onChange={this.titleChanged}
-                           value={this.state.module.title}
-                        placeholder="title"/>
-                    <button className="btn btn-primary btn-block"
-                        onClick={this.createModule}>
-                        <i className="fa fa-plus"></i>
-                    </button>
+                    <div className="input-group">
+                        <input className="form-control"
+                            onChange={this.titleChanged}
+                               value={this.state.module.title}
+                            placeholder="title"/>
+                        <div className="input-group-append">
+                            <button className="btn btn-primary btn-block"
+                                onClick={this.createModule}>
+                                <i className="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
                     <ul className="list-group">
                         {this.renderListOfModules()}
                     </ul>

@@ -45,13 +45,18 @@ export default class CourseEditor
     render() { return(
         <Router>
         <div>
-            <h2>Editing Course: {this.state.courseTitle}</h2>
+            <nav className="navbar navbar-dark bg-dark justify-content-between">
+                <div className="navbar-header">
+                    <a className="navbar-brand" href="#">{this.state.courseTitle}</a>
+                </div>
+            </nav>
+
             <div className="row">
-                <div className="col-4">
+                <div className="col-sm-4">
                     <ModuleList
                         courseId={this.state.courseId}/>
                 </div>
-                <div className="col-8">
+                <div className="col-sm-8">
                     {/*<LessonTabs/>*/}
 
                     <Route path= "/course/:courseId/module/:moduleId"

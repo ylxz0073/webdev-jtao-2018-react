@@ -56,12 +56,12 @@ export default class LessonEditor
         return (
 
             <div>
-                <h4>Lesson Editor</h4>
-                <div>
-                    <span>courseId: {this.state.courseId} </span>
-                    <span>moduleId: {this.state.moduleId} </span>
-                    <span>lessonId: {this.state.lessonId} </span>
-                </div>
+                {/*<h4>Lesson Editor</h4>*/}
+                {/*<div>*/}
+                    {/*<span>courseId: {this.state.courseId} </span>*/}
+                    {/*<span>moduleId: {this.state.moduleId} </span>*/}
+                    {/*<span>lessonId: {this.state.lessonId} </span>*/}
+                {/*</div>*/}
                 <div><TopicList
                     courseId={this.state.courseId}
                     moduleId={this.state.moduleId}

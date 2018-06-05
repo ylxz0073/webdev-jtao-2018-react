@@ -11,7 +11,7 @@ import App from "./examples/App"
 
 ReactDOM.render(
 
-    <div className="container-fluid">
+    <div>
         <CourseManager/>
 
         {/*<Stateless message="this is a stateless component"/>*/}

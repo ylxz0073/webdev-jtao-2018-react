@@ -12,8 +12,8 @@ export default class CourseManager extends Component {
         return (
             <Router>
 
-                <div className="container-fluid">
-                    <h1>Course Manager</h1>
+                <div>
+
                     <Route path="/courses"
                            component={CourseList}>
                     </Route>

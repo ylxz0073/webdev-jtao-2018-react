@@ -50,12 +50,7 @@ class CourseList extends React.Component {
     }
 
     titleChanged(event) {
-        // var dateStamp= Date();
-        // console.log(dateStamp.toString());
-        // this.setState({
-        //     course: {created: dateStamp.toString(),
-        //         modified: dateStamp.toString()}
-        // });
+
         this.setState({
             course: { title: event.target.value }
         });
@@ -63,12 +58,7 @@ class CourseList extends React.Component {
     }
 
     createCourse() {
-        // var dateStamp= Date();
-        // console.log(dateStamp);
-        // this.setState({
-        //     course: {created: dateStamp.toString(),
-        //             modified: dateStamp.toString()}
-        // });
+
         // console.log(this.state.course);
         this.courseService
             .createCourse(this.state.course)
@@ -76,7 +66,7 @@ class CourseList extends React.Component {
                this.findAllCourses();
 
             });
-
+        alert("add success");
     }
 
     deleteCourse(courseId) {
@@ -86,35 +76,46 @@ class CourseList extends React.Component {
                 this.findAllCourses();
 
             });
-
+        alert("delete success");
     }
 
 
     render() {
             return (
-                <div>
-                    <h2>Course List</h2>
-                    <table className="table">
-                        <thead>
 
-                            <tr>
-                                <th><input onChange={this.titleChanged}
-                                           className="form-control" id="titleFld"
-                                           placeholder="cs101"/></th>
-                                <th><button onClick={this.createCourse}
-                                            className="btn btn-primary">
-                                    Add</button></th>
-                            </tr>
-                            <tr>
-                                <th>Title</th>
-                                <th>Owned by</th>
-                                <th>Last modified by me</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.renderCourseRows()}
-                        </tbody>
+                <div>
+
+                    <nav className="navbar navbar-dark bg-dark justify-content-between">
+                        <div className="navbar-header">
+                            <a className="navbar-brand" href="#">Course Manager</a>
+                        </div>
+                        <form className="form-inline">
+                             <input onChange={this.titleChanged}
+                                   className="form-control form-control mr-sm-2" id="titleFld"
+                                   placeholder="cs101"/>
+                            <button className="btn btn-primary my-2 my-sm-0"
+                                    onClick={this.createCourse}type="submit">Add</button>
+                        </form>
+                    </nav>
+
+                    <table className="table">
+
                     </table>
+                    <div className="container">
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Owned by</th>
+                                    <th>Last modified by me</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {this.renderCourseRows()}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
             )

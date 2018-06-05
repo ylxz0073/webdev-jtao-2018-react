@@ -55,7 +55,7 @@ export default class LessonTabs
             this.findAllLessonsForModule
             (this.props.moduleId)
         });
-
+        alert("add success");
 
     }
 
@@ -66,6 +66,7 @@ export default class LessonTabs
                 this.findAllLessonsForModule
                 (this.props.moduleId)
             });
+        alert("delete success");
     }
 
     highlightLesson(lessonId) {
@@ -126,14 +127,19 @@ export default class LessonTabs
     render() {
         return(
             <div>
-                <input className="form-control"
-                       onChange={this.titleChanged}
-                       value={this.state.lesson.title}
-                       placeholder="title"/>
-                <button className="btn btn-primary btn-block"
+                <div className="input-group">
+                    <input className="form-control"
+                           onChange={this.titleChanged}
+                           value={this.state.lesson.title}
+                           placeholder="title"/>
+                    <div className="input-group-append">
+
+                        <button className="btn btn-primary btn-block"
                         onClick={this.createLesson}>
-                    <i className="fa fa-plus"></i>
-                </button>
+                             <i className="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
                 <ul className="nav nav-tabs">
                     {this.renderListOfLessons()}
                 </ul>
