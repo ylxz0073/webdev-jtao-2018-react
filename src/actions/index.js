@@ -1,5 +1,29 @@
 
-import {ADD_WIDGET, HEADING_SIZE_CHANGED, HEADING_TEXT_CHANGED, FIND_ALL_WIDGETS, SAVE, PREVIEW} from "../constants";
+import {ADD_WIDGET, HEADING_SIZE_CHANGED, HEADING_TEXT_CHANGED, FIND_ALL_WIDGETS, SAVE, PREVIEW, NAME_TEXT_CHANGED, URL_CHANGED, HREF_CHANGED} from "../constants";
+
+export const hrefChanged = (dispatch, widgetId, newText) => {
+    console.log(newText)
+    return (
+        dispatch({
+            type: HREF_CHANGED,
+            id: widgetId,
+            href: newText})
+    )
+}
+
+export const urlChanged = (dispatch, widgetId, newText) => (
+    dispatch({
+        type: URL_CHANGED,
+        id: widgetId,
+        text: newText})
+)
+
+export const nameTextChanged = (dispatch, widgetId, newText) => (
+    dispatch({
+        type: NAME_TEXT_CHANGED,
+        id: widgetId,
+        text: newText})
+)
 
 export const headingTextChanged = (dispatch, widgetId, newText) => (
     dispatch({

@@ -15,7 +15,7 @@ class WidgetList extends Component {
         var index = 0
         return(
             <div>
-                {console.log(this.props.widgets)}
+                {/*{console.log(this.props.widgets)}*/}
                 <h1>Widget List {this.props.widgets.length}</h1>
 
                 <button hidden={this.props.previewMode} onClick={this.props.save}>
@@ -26,8 +26,7 @@ class WidgetList extends Component {
                 </button>
                 <ul>
                     {this.props.widgets.map((widget) => {
-                        console.log("widget: " + widget)
-                        console.log("widgets: " + this.props.widgets)
+
                         return (
                             <WidgetContainer widget={widget}
                                              preview={this.props.previewMode}
