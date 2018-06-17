@@ -13,8 +13,9 @@ class WidgetList extends Component {
     render() {
         return(
             <div>
+                {console.log(this.props.widgets)}
                 <h1>Widget List {this.props.widgets.length}</h1>
-                {console.log(this.props.previewMode)}
+
                 <button hidden={this.props.previewMode} onClick={this.props.save}>
                     Save
                 </button>

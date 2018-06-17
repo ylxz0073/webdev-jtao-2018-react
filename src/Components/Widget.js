@@ -66,6 +66,12 @@ export const Widget = ({widget, preview, dispatch}) => {
         <li>
             <div hidden={preview}>
                 {widget.id} {widget.widgetType}
+                <button onClick={() => {
+                    dispatch({
+                        type: 'MOVE_UP',
+                        widget: widget
+                    })
+                }}>^</button>
 
                 <select value={widget.widgetType} onChange={e =>
                     dispatch({
