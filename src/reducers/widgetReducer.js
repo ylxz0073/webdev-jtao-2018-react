@@ -1,6 +1,6 @@
 import {
     ADD_WIDGET, DELETE_WIDGET, FIND_ALL_WIDGETS, HEADING_SIZE_CHANGED, HEADING_TEXT_CHANGED, PREVIEW,
-    SAVE
+    SAVE, MOVE_UP, MOVE_DOWN
 } from "../constants";
 
 Array.prototype.move = function (from, to) {
@@ -9,18 +9,28 @@ Array.prototype.move = function (from, to) {
 
 
 export const widgetReducer = (state = {widgets: [], preview: false}, action) => {
-
+    let index
+    let newWidgets
     switch (action.type) {
-        case 'MOVE_UP':
+        case MOVE_UP:
 
-            console.log("****" + state)
-            let index = state.widgets.indexOf(action.widget);
+            index = state.widgets.indexOf(action.widget);
             state.widgets.move(index, index - 1);
 
-            let newWidgets = {
+            newWidgets = {
                 widgets: state.widgets.splice(0),
                 preview: state.preview}
-            console.log(newWidgets)
+            return newWidgets;
+
+        case MOVE_DOWN:
+
+            index = state.widgets.indexOf(action.widget);
+            state.widgets.move(index, index + 1);
+
+            newWidgets = {
+                widgets: state.widgets.splice(0),
+                preview: state.preview}
+
             return newWidgets;
 
         case PREVIEW:

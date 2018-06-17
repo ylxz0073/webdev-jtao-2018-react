@@ -23,7 +23,7 @@ const Heading = ({widget, preview, headingSizeChanged, headingTextChanged}) => {
                 <h3>Preview</h3>
             </div>
 
-            {console.log(widget)}
+            {/*{console.log(widget)}*/}
             {widget.size == "1" && <h1>{widget.text}</h1>}
             {widget.size == "2" && <h2>{widget.text}</h2>}
             {widget.size == "3" && <h3>{widget.text}</h3>}
@@ -59,19 +59,29 @@ const List = () => (
     <h2>List</h2>
 )
 
-export const Widget = ({widget, preview, dispatch}) => {
+export const Widget = ({widget, preview, widgetIndex, widgetsLength, dispatch}) => {
     let selectElement
-
+    console.log(widget)
     return(
         <li>
             <div hidden={preview}>
                 {widget.id} {widget.widgetType}
-                <button onClick={() => {
+
+                <button hidden={widgetIndex==0}
+                        onClick={() => {
                     dispatch({
                         type: 'MOVE_UP',
                         widget: widget
                     })
-                }}>^</button>
+                }}>▲</button>
+
+                <button hidden={widgetIndex==widgetsLength-1}
+                        onClick={() => {
+                    dispatch({
+                        type: 'MOVE_DOWN',
+                        widget: widget
+                    })
+                }}>▼</button>
 
                 <select value={widget.widgetType} onChange={e =>
                     dispatch({

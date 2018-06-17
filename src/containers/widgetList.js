@@ -10,7 +10,9 @@ class WidgetList extends Component {
         this.props.findAllWidgets()
     }
     // ({widgets, dispatch})
+
     render() {
+        var index = 0
         return(
             <div>
                 {console.log(this.props.widgets)}
@@ -23,11 +25,18 @@ class WidgetList extends Component {
                     Preview
                 </button>
                 <ul>
-                    {this.props.widgets.map(widget => (
-                        <WidgetContainer widget={widget}
-                                         preview={this.props.previewMode}
-                                         key={widget.id}/>
-                    ))}
+                    {this.props.widgets.map((widget) => {
+                        console.log("widget: " + widget)
+                        console.log("widgets: " + this.props.widgets)
+                        return (
+                            <WidgetContainer widget={widget}
+                                             preview={this.props.previewMode}
+                                             widgetIndex={index++}
+                                             widgetsLength={this.props.widgets.length}
+                                             key={widget.id}/>
+
+                        )
+                    })}
                 </ul>
                 <button onClick={this.props.addWidget}>Add widget</button>
             </div>
