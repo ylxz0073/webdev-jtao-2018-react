@@ -1,6 +1,19 @@
-import React from "react";
+
 import TopicService from "../services/TopicService";
 import TopicListItem from "../Components/TopicListItem"
+
+import React, {Component} from 'react'
+import ReactDOM from 'react-dom'
+import {Provider, connect} from 'react-redux'
+import {createStore} from 'redux'
+
+import {widgetReducer} from "../reducers/widgetReducer";
+
+import {App} from './widgetList'
+
+
+
+let store = createStore(widgetReducer)
 
 export default class TopicList
     extends React.Component {
@@ -121,6 +134,7 @@ export default class TopicList
     }
 
 
+
     render() {
         return(
             <div>
@@ -141,17 +155,10 @@ export default class TopicList
                     {this.renderListOfTopics()}
                 </ul>
 
-                {/*<input className="form-control"*/}
-                       {/*onChange={this.titleChanged}*/}
-                       {/*value={this.state.lesson.title}*/}
-                       {/*placeholder="title"/>*/}
-                {/*<button className="btn btn-primary btn-block"*/}
-                        {/*onClick={this.createLesson}>*/}
-                    {/*<i className="fa fa-plus"></i>*/}
-                {/*</button>*/}
-                {/*<ul className="nav nav-tabs">*/}
-                    {/*{this.renderListOfLessons()}*/}
-                {/*</ul>*/}
+                <Provider store={store}>
+                    <App/>
+                </Provider>
+
             </div>
 
         );

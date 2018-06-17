@@ -66,6 +66,7 @@ export default class LessonEditor
                     courseId={this.state.courseId}
                     moduleId={this.state.moduleId}
                     lessonId={this.state.lessonId}/></div>
+
             </div>
 
 
