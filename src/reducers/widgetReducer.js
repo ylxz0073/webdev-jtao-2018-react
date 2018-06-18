@@ -39,7 +39,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 widgets: state.widgets.map(widget => {
                     if(widget.id == action.id) {
                         // console.log(action.text)
-                        widget.listText = action.listText
+                        widget.listItems = action.listItems
                     }
                     return Object.assign({}, widget)
                 })
@@ -81,7 +81,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 
                 widgets: state.widgets.map(widget => {
                     if(widget.id == action.id) {
-                        widget.url = action.text
+                        widget.src = action.src
                     }
                     return Object.assign({}, widget)
                 })
@@ -160,7 +160,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             return {
                 widgets: [
                     ...state.widgets,
-                    {id: state.widgets.length + 1, size: '1', listType: '1',text: '', widgetType: 'Heading'}
+                    {id: state.widgets.length + 1, size: '1', listType: 'unordered',text: '', widgetType: 'Heading'}
                 ]
             }
         default:

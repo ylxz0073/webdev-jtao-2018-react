@@ -8,7 +8,7 @@ export const listTextChanged = (dispatch, widgetId, newText) => {
         dispatch({
             type: LIST_TEXT_CHANGED,
             id: widgetId,
-            listText: newText})
+            listItems: newText})
     )
 }
 
@@ -33,7 +33,7 @@ export const urlChanged = (dispatch, widgetId, newText) => (
     dispatch({
         type: URL_CHANGED,
         id: widgetId,
-        text: newText})
+        src: newText})
 )
 
 export const nameTextChanged = (dispatch, widgetId, newText) => (

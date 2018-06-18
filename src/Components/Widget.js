@@ -118,9 +118,10 @@ const Image = ({widget, preview, urlChanged, nameTextChanged}) => {
                 {<WidgetNameField widget={widget}
                                   nameTextChanged={nameTextChanged}/>}
                 <h3>Preview</h3>
-                {widget.url && <img src={widget.url}/>}
-                {widget.name && <div>widget name: {widget.name}</div>}
             </div>
+                {widget.src && <img src={widget.src}/>}
+                {widget.name && <div>widget name: {widget.name}</div>}
+
         </div>
     )
 }
@@ -129,7 +130,8 @@ const ImageContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Image)
 
 
 const UnorderedListField = ({widget}) => {
-    let text = widget.listText
+    let text = widget.listItems
+    console.log(text)
     let k = 0
     let listItems = text.split(/\r?\n/).map((item) =>
         <li key={k++}>{item}</li>
@@ -144,7 +146,7 @@ const UnorderedListField = ({widget}) => {
 }
 
 const OrderedListField = ({widget}) => {
-    let text = widget.listText
+    let text = widget.listItems
     let k = 0
     let listItems = text.split(/\r?\n/).map((item) =>
         <li key={k++}>{item}</li>
@@ -161,16 +163,19 @@ const OrderedListField = ({widget}) => {
 const List = ({widget, preview, listTextChanged, listTypeChanged, nameTextChanged}) => {
     let inputElem
     let selectElem
+
     return (
         <div>
             <div hidden={preview}>
                 <h2> List </h2>
                     <textarea className="form-control" onChange={() => listTextChanged(widget.id, inputElem.value)}
                               placeholder={"Enter one list item per line"}
+                              value = {widget.listItems}
                               ref={node => inputElem = node}></textarea>
                     <select className="form-control" onChange={() => listTypeChanged(widget.id, selectElem.value)}
+
                             value={widget.listType}
-                            ref={node => selectElem = node}>
+                            ref={node => selectElem = node}>{console.log(widget)}
                     <option value="1">Unordered list</option>
                     <option value="2">Ordered list</option>
 
@@ -180,9 +185,10 @@ const List = ({widget, preview, listTextChanged, listTypeChanged, nameTextChange
                 {<WidgetNameField widget={widget}
                                   nameTextChanged={nameTextChanged}/>}
                 <h3>Preview</h3>
+                {console.log(widget)}
                 </div>
-            {widget.listText && widget.listType == "1" && <UnorderedListField widget={widget}/>}
-            {widget.listText && widget.listType == "2" && <OrderedListField widget={widget}/>}
+            {widget.listItems && widget.listType == "unordered" && <UnorderedListField widget={widget}/>}
+            {widget.listItems && widget.listType == "ordered" && <OrderedListField widget={widget}/>}
         {console.log(widget)}
 
         {widget.name && <div>widget name: {widget.name}</div>}
