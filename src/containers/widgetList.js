@@ -3,6 +3,9 @@ import {connect} from "react-redux";
 import {addWidget, findAllWidgets, preview} from "../actions";
 import {WidgetContainer} from "../Components/Widget";
 import {save} from "../actions"
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+
+
 
 class WidgetList extends Component {
     constructor(props) {
@@ -18,7 +21,7 @@ class WidgetList extends Component {
                 {/*{console.log(this.props.widgets)}*/}
                 <h1>Widget List {this.props.widgets.length}</h1>
 
-                <button hidden={this.props.previewMode} onClick={this.props.save}>
+                    <button hidden={this.props.previewMode} onClick={this.props.save}>
                     Save
                 </button>
                 <button onClick={this.props.preview}>
