@@ -1,6 +1,6 @@
 import {
     ADD_WIDGET, DELETE_WIDGET, FIND_ALL_WIDGETS, HEADING_SIZE_CHANGED, HEADING_TEXT_CHANGED, PREVIEW,
-    SAVE, MOVE_UP, MOVE_DOWN, NAME_TEXT_CHANGED, URL_CHANGED, HREF_CHANGED
+    SAVE, MOVE_UP, MOVE_DOWN, NAME_TEXT_CHANGED, URL_CHANGED, HREF_CHANGED, LIST_TEXT_CHANGED, LIST_TYPE_CHANGED
 } from "../constants";
 
 Array.prototype.move = function (from, to) {
@@ -32,6 +32,31 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 preview: state.preview}
 
             return newWidgets;
+
+        case LIST_TEXT_CHANGED:
+            return {
+
+                widgets: state.widgets.map(widget => {
+                    if(widget.id == action.id) {
+                        // console.log(action.text)
+                        widget.listText = action.listText
+                    }
+                    return Object.assign({}, widget)
+                })
+            }
+
+        case LIST_TYPE_CHANGED:
+            return {
+
+                widgets: state.widgets.map(widget => {
+                    if(widget.id == action.id) {
+                        // console.log(action.text)
+                        widget.listType = action.listType
+                    }
+                    return Object.assign({}, widget)
+                })
+            }
+
 
         case PREVIEW:
             return {
@@ -135,7 +160,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             return {
                 widgets: [
                     ...state.widgets,
-                    {id: state.widgets.length + 1, size: '1', text: '', widgetType: 'Heading'}
+                    {id: state.widgets.length + 1, size: '1', listType: '1',text: '', widgetType: 'Heading'}
                 ]
             }
         default:

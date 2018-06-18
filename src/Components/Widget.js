@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from "react-redux";
 import {DELETE_WIDGET} from "../constants";
-import {headingSizeChanged, headingTextChanged, nameTextChanged, urlChanged, hrefChanged} from "../actions";
+import {headingSizeChanged, headingTextChanged, nameTextChanged, urlChanged, hrefChanged, listTextChanged, listTypeChanged} from "../actions";
 
 const WidgetNameField = ({widget, nameTextChanged}) => {
     let inputName
@@ -69,7 +69,11 @@ const dispatchToPropsMapper = dispatch => ({
     urlChanged: (widgetId, newText) =>
         urlChanged(dispatch, widgetId, newText),
     hrefChanged: (widgetId, newText) =>
-        hrefChanged(dispatch, widgetId, newText)
+        hrefChanged(dispatch, widgetId, newText),
+    listTextChanged: (widgetId, newText) =>
+        listTextChanged(dispatch, widgetId, newText),
+    listTypeChanged: (widgetId, newType) =>
+        listTypeChanged(dispatch, widgetId, newType)
 })
 
 const HeadingContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Heading)
@@ -115,9 +119,71 @@ const Image = ({widget, preview, urlChanged, nameTextChanged}) => {
 
 const ImageContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Image)
 
-const List = () => (
-    <h2>List</h2>
-)
+
+const UnorderedListField = ({widget}) => {
+    let text = widget.listText
+    let k = 0
+    let listItems = text.split(/\r?\n/).map((item) =>
+        <li key={k++}>{item}</li>
+    )
+    return (
+        <ul>
+            {listItems}
+        </ul>
+
+
+    )
+}
+
+const OrderedListField = ({widget}) => {
+    let text = widget.listText
+    let k = 0
+    let listItems = text.split(/\r?\n/).map((item) =>
+        <li key={k++}>{item}</li>
+    )
+    return (
+        <ol>
+            {listItems}
+        </ol>
+
+
+    )
+}
+
+const List = ({widget, preview, listTextChanged, listTypeChanged, nameTextChanged}) => {
+    let inputElem
+    let selectElem
+    return (
+        <div>
+            <div hidden={preview}>
+                <h2> List </h2>
+                    <textarea onChange={() => listTextChanged(widget.id, inputElem.value)}
+                              placeholder={"Enter one list item per line"}
+                              ref={node => inputElem = node}></textarea>
+                    <select onChange={() => listTypeChanged(widget.id, selectElem.value)}
+                            value={widget.listType}
+                            ref={node => selectElem = node}>
+                    <option value="1">Unordered list</option>
+                    <option value="2">Ordered list</option>
+
+                    </select>
+
+
+                {<WidgetNameField widget={widget}
+                                  nameTextChanged={nameTextChanged}/>}
+                <h3>Preview</h3>
+                </div>
+            {widget.listText && widget.listType == "1" && <UnorderedListField widget={widget}/>}
+            {widget.listText && widget.listType == "2" && <OrderedListField widget={widget}/>}
+        {console.log(widget)}
+
+        {widget.name && <div>widget name: {widget.name}</div>}
+    </div>
+
+    )
+}
+
+const ListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(List)
 
 const Link = ({widget, preview, hrefChanged, headingTextChanged, nameTextChanged}) => {
     let inputElem
@@ -199,7 +265,7 @@ export const Widget = ({widget, preview, widgetIndex, widgetsLength, dispatch}) 
             <div>
                 {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
                 {widget.widgetType==='Paragraph' && <ParagraphContainer widget={widget}/>}
-                {widget.widgetType==='List' && <List widget={widget}/>}
+                {widget.widgetType==='List' && <ListContainer widget={widget}/>}
                 {widget.widgetType==='Image' && <ImageContainer widget={widget}/>}
                 {widget.widgetType==='Link' && <LinkContainer widget={widget}/>}
             </div>
