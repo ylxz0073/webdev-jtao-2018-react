@@ -24,7 +24,7 @@ class WidgetList extends Component {
         // console.log(this.props);
         if (this.props.topicId !== newProps.topicId) {
             console.log(this.props);
-            this.props.findAllWidgets(this.props.topicId)
+            this.props.findAllWidgets(newProps.topicId)
         }
     }
 

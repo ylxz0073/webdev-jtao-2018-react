@@ -55,8 +55,8 @@ export default class TopicList
     }
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
-        this.setModuleId(this.props.moduleId);
-        this.setLessonId(this.props.lessonId);
+        this.setModuleId(newProps.moduleId);
+        this.setLessonId(newProps.lessonId);
     }
 
     setCourseId(courseId) {

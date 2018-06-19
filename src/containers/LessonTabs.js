@@ -30,7 +30,7 @@ export default class LessonTabs
     }
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
-        this.setModuleId(this.props.moduleId);
+        this.setModuleId(newProps.moduleId);
     }
 
     setCourseId(courseId) {
