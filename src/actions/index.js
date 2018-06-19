@@ -59,7 +59,7 @@ export const headingSizeChanged = (dispatch, widgetId, newSize) => (
 
 export const findAllWidgets = (dispatch, topicId) => {
     console.log("***" + topicId);
-    fetch('http://localhost:8080/api/topic/topicId/widget'.replace('topicId', topicId))
+    fetch('http://jtao-webdev-hw-2018.herokuapp.com/api/topic/topicId/widget'.replace('topicId', topicId))
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: FIND_ALL_WIDGETS,
