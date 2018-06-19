@@ -258,7 +258,7 @@ export const Widget = ({widget, preview, widgetIndex, widgetsLength, dispatch}) 
                         <h2>{widget.widgetType}</h2>
                     </div>
                     <div className="col-auto my-1">
-                        <button hidden={widgetIndex==0}
+                        <button type="button" hidden={widgetIndex==0}
                                 onClick={() => {
                             dispatch({
                                 type: 'MOVE_UP',
@@ -266,7 +266,7 @@ export const Widget = ({widget, preview, widgetIndex, widgetsLength, dispatch}) 
                             })
                         }}>▲</button>
 
-                        <button hidden={widgetIndex==widgetsLength-1}
+                        <button type="button" hidden={widgetIndex==widgetsLength-1}
                                 onClick={() => {
                             dispatch({
                                 type: 'MOVE_DOWN',
