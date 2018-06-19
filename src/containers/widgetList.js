@@ -54,9 +54,10 @@ class WidgetList extends Component {
                         </div>
                     </form>
                 <ul>
-                    {this.props.widgets.map((widget) => {
-
+                    {this.props.widgets.sort((x, y) => x.widgetOrder - y.widgetOrder).map((widget) => {
+                        console.log(widget.widgetOrder)
                         return (
+
                             <WidgetContainer widget={widget}
                                              preview={this.props.previewMode}
                                              widgetIndex={index++}

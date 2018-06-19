@@ -3,10 +3,24 @@ import {
     SAVE, MOVE_UP, MOVE_DOWN, NAME_TEXT_CHANGED, URL_CHANGED, HREF_CHANGED, LIST_TEXT_CHANGED, LIST_TYPE_CHANGED
 } from "../constants";
 
-Array.prototype.move = function (from, to) {
-    this.splice(to, 0, this.splice(from, 1)[0]);
-};
+// Array.prototype.move = function (from, to) {
+//     this.splice(to, 0, this.splice(from, 1)[0]);
+// };
 
+const resetOrder = (widgets) => {
+    for (var i = 0; i < widgets.length; i++) {
+        widgets[i].widgetOrder = i
+    }
+    return widgets
+}
+
+const switchIndex = (i, j, array) => {
+    let temp = array[i].widgetOrder
+    array[i].widgetOrder = array[j].widgetOrder
+    array[j].widgetOrder = temp
+    array.sort((x,y) => x.widgetOrder - y.widgetOrder)
+    return array
+}
 
 export const widgetReducer = (state = {widgets: [], preview: false}, action) => {
     let index
@@ -14,25 +28,45 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
     switch (action.type) {
         case MOVE_UP:
 
-            index = state.widgets.indexOf(action.widget);
-            state.widgets.move(index, index - 1);
-
-            newWidgets = {
-                widgets: state.widgets.splice(0),
-                preview: state.preview}
-            return newWidgets;
+            // index = state.widgets.indexOf(action.widget);
+            // state.widgets.move(index, index - 1);
+            //
+            // newWidgets = {
+            //     widgets: state.widgets.splice(0),
+            //     preview: state.preview}
+            // return newWidgets;
+            index = state.widgets.indexOf(action.widget)
+            if(index === 0) {
+                return state
+            } else {
+                newState = {
+                    widgets: resetOrder(switchIndex(index, index - 1, state.widgets)),
+                    preview: state.preview
+                }
+                return JSON.parse(JSON.stringify(newState))
+            }
 
         case MOVE_DOWN:
 
-            index = state.widgets.indexOf(action.widget);
-            state.widgets.move(index, index + 1);
+            // index = state.widgets.indexOf(action.widget);
+            // state.widgets.move(index, index + 1);
+            //
+            // newWidgets = {
+            //     widgets: state.widgets.splice(0),
+            //     preview: state.preview}
+            //
+            // return newWidgets;
 
-            newWidgets = {
-                widgets: state.widgets.splice(0),
-                preview: state.preview}
-
-            return newWidgets;
-
+            index = state.widgets.indexOf(action.widget)
+            if(index >=  state.widgets.length - 1) {
+                return state
+            } else {
+                newState = {
+                    widgets: resetOrder(switchIndex(index, index + 1, state.widgets)),
+                    preview: state.preview
+                }
+                return JSON.parse(JSON.stringify(newState))
+            }
         case LIST_TEXT_CHANGED:
             return {
 
@@ -142,6 +176,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                     }
                 }
             }
+            console.log(state.widgets)
             fetch('https://jtao-webdev-hw-2018.herokuapp.com/api/topic/topicId/widget'.replace('topicId', action.topicId), {
                 method: 'post',
                 body: JSON.stringify(state.widgets),
@@ -158,16 +193,16 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             return newState
         case DELETE_WIDGET:
             return {
-                widgets: state.widgets.filter(widget => (
+                widgets: resetOrder(state.widgets.filter(widget => (
                     widget.id !== action.id
-                ))
+                )))
             }
         case ADD_WIDGET:
 
             return {
                 widgets: [
                     ...state.widgets,
-                    {id: state.widgets.length + 1, size: '1', listType: 'unordered',text: '', widgetType: 'Heading'}
+                    {id: state.widgets.length + 1, size: '1', listType: 'unordered',text: '', widgetType: 'Heading', widgetOrder: state.widgets.length}
                 ]
             }
         default:
