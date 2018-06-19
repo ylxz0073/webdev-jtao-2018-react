@@ -28,7 +28,7 @@ const Heading = ({widget, preview, headingSizeChanged, headingTextChanged, nameT
         <div>
 
                 <div hidden={preview}>
-                <h2> Heading {widget.size}</h2>
+                {/*<h2> Heading {widget.size}</h2>*/}
 
                 <input className="form-control" onChange={() => headingTextChanged(widget.id, inputElem.value)}
                     // value={widget.text}
@@ -87,7 +87,7 @@ const Paragraph = ({widget, preview, headingTextChanged, nameTextChanged}) => {
     return(
         <div>
             <div hidden={preview}>
-                <h2>Paragraph</h2>
+                {/*<h2>Paragraph</h2>*/}
                 <textarea className="form-control" onChange={() => headingTextChanged(widget.id, inputElem.value)}
                     // value={widget.text}
                           placeholder={"Paragraph text"}
@@ -110,7 +110,7 @@ const Image = ({widget, preview, urlChanged, nameTextChanged}) => {
 
         <div>
             <div hidden={preview}>
-                <h2>Image</h2>
+                {/*<h2>Image</h2>*/}
                 <input className="form-control" onChange={() => urlChanged(widget.id, inputElem.value)}
                     // value={widget.text}
                        placeholder={"Image URL"}
@@ -167,7 +167,7 @@ const List = ({widget, preview, listTextChanged, listTypeChanged, nameTextChange
     return (
         <div>
             <div hidden={preview}>
-                <h2> List </h2>
+                {/*<h2> List </h2>*/}
                     <textarea className="form-control" onChange={() => listTextChanged(widget.id, inputElem.value)}
                               placeholder={"Enter one list item per line"}
                               value = {widget.listItems}
@@ -176,8 +176,8 @@ const List = ({widget, preview, listTextChanged, listTypeChanged, nameTextChange
 
                             value={widget.listType}
                             ref={node => selectElem = node}>{console.log(widget)}
-                    <option value="1">Unordered list</option>
-                    <option value="2">Ordered list</option>
+                    <option value="unordered">Unordered list</option>
+                    <option value="ordered">Ordered list</option>
 
                     </select>
 
@@ -206,7 +206,7 @@ const Link = ({widget, preview, hrefChanged, headingTextChanged, nameTextChanged
 
         <div>
             <div hidden={preview}>
-                <h2>Link</h2>
+                {/*<h2>Link</h2>*/}
                     <div>
                         <input className="form-control" onChange={() => hrefChanged(widget.id, inputHref.value)}
                             // value={widget.text}
@@ -243,7 +243,8 @@ export const Widget = ({widget, preview, widgetIndex, widgetsLength, dispatch}) 
             <div hidden={preview}>
                 <div className="form-row align-items-center">
                     <div className="col-sm-6 my-1">
-                        {widget.id} {widget.widgetType}
+                        {/*{widget.id} */}
+                        <h2>{widget.widgetType}</h2>
                     </div>
                     <div className="col-auto my-1">
                         <button hidden={widgetIndex==0}

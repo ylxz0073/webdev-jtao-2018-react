@@ -58,6 +58,7 @@ export default class ModuleEditor
                     moduleId={this.state.moduleId}/></div>
                 <Route path= "/course/:courseId/module/:moduleId/lesson/:lessonId"
                             component= {LessonEditor}/>
+
             </div>
 
         )}

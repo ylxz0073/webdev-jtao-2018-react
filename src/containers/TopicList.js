@@ -13,7 +13,7 @@ import {App} from './widgetList'
 
 
 
-let store = createStore(widgetReducer)
+// let store = createStore(widgetReducer)
 
 export default class TopicList
     extends React.Component {
@@ -25,6 +25,7 @@ export default class TopicList
             courseId: "",
             moduleId: "",
             lessonId: "",
+            highlight: "",
             topic: {title:"",
             },
             topics:[]};
@@ -34,7 +35,16 @@ export default class TopicList
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
         this.setLessonId = this.setLessonId.bind(this);
+        this.highlightTopic = this.highlightTopic.bind(this);
         this.topicService = TopicService.instance;
+    }
+
+    highlightTopic(topicId) {
+
+        this.setState({highlight: topicId});
+        console.log("highlight: " + this.state.highlight);
+        // console.log(this.state.highlight);
+
     }
 
     componentDidMount() {
@@ -101,13 +111,18 @@ export default class TopicList
 
                 // console.log(lesson);
                 return (<TopicListItem key={topic.id}
+                                       topicId={topic.id}
                                        lessonId={this.props.lessonId}
                                        courseId={this.props.courseId}
                                        moduleId={this.props.moduleId}
                                        topic={topic}
                                        title={topic.title}
                                        delete={this.deleteTopic}
+                                       highlight={this.highlightTopic}
+                                       highlightId={this.state.highlight}
+
                 >
+
                 </TopicListItem>)
 
             });
@@ -155,9 +170,9 @@ export default class TopicList
                     {this.renderListOfTopics()}
                 </ul>
 
-                <Provider store={store}>
-                    <App/>
-                </Provider>
+                {/*<Provider store={store}>*/}
+                    {/*<App/>*/}
+                {/*</Provider>*/}
 
             </div>
 

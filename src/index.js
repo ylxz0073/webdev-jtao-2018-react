@@ -8,14 +8,19 @@ import Stateless from './Components/Stateless'
 import ModuleListItem from "./Components/ModuleListItem";
 import ModuleList from "./containers/ModuleList";
 import App from "./examples/App"
+import {widgetReducer} from "./reducers/widgetReducer"
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+
+let store = createStore(widgetReducer)
 
 ReactDOM.render(
 
-    <div>
+    <Provider store={store}>
         <CourseManager/>
 
         {/*<Stateless message="this is a stateless component"/>*/}
         {/*<CourseManager/>*/}
-    </div>,
+        </Provider>,
     document.getElementById('root')
 );

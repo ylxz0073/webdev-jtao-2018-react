@@ -134,10 +134,10 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             }
             return JSON.parse(JSON.stringify(newState))
         case SAVE:
-
-            fetch('http://localhost:8080/api/widget/save', {
+console.log(action.topicId)
+            fetch('http://localhost:8080/api/topic/topicId/widget'.replace('topicId', action.topicId), {
                 method: 'post',
-                body: JSON.stringify(state.widgets.reverse()),
+                body: JSON.stringify(state.widgets),
                 headers: {
                     'content-type': 'application/json'
                 }
