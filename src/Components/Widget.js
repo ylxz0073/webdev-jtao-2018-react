@@ -7,11 +7,9 @@ const WidgetNameField = ({widget, nameTextChanged}) => {
     let inputName
     return (
         <div>
-            <div>
-                Widget name: {widget.name}
-            </div>
+            <label htmlFor="{widget.id}name"> widget name</label>
             <input className="form-control" onChange={() => nameTextChanged(widget.id, inputName.value)}
-
+                   id="{widget.id}name"
                    placeholder={widget.name}
                    ref={node => inputName = node}/>
 
@@ -29,14 +27,16 @@ const Heading = ({widget, preview, headingSizeChanged, headingTextChanged, nameT
 
                 <div hidden={preview}>
                 {/*<h2> Heading {widget.size}</h2>*/}
-
+                    <label htmlFor="{widget.id}text"> heading text</label>
                 <input className="form-control" onChange={() => headingTextChanged(widget.id, inputElem.value)}
                     // value={widget.text}
+                        id="{widget.id}text"
                        placeholder={"Heading text"}
                        ref={node => inputElem = node}/>
 
-
+                    <label htmlFor="{widget.id}size"> heading size</label>
                 <select className="form-control" onChange={() => headingSizeChanged(widget.id, selectElem.value)}
+                        id="{widget.id}size"
                         value={widget.size}
                         ref={node => selectElem = node}>
                     <option value="1">Heading 1</option>
@@ -54,7 +54,7 @@ const Heading = ({widget, preview, headingSizeChanged, headingTextChanged, nameT
             {widget.size == "1" && <h1>{widget.text}</h1>}
             {widget.size == "2" && <h2>{widget.text}</h2>}
             {widget.size == "3" && <h3>{widget.text}</h3>}
-            {widget.name && <div>widget name: {widget.name}</div>}
+            {/*{widget.name && <div>widget name: {widget.name}</div>}*/}
         </div>
     )
 }
@@ -88,8 +88,10 @@ const Paragraph = ({widget, preview, headingTextChanged, nameTextChanged}) => {
         <div>
             <div hidden={preview}>
                 {/*<h2>Paragraph</h2>*/}
+                <label htmlFor="{widget.id}paragraph"> text</label>
                 <textarea className="form-control" onChange={() => headingTextChanged(widget.id, inputElem.value)}
                     // value={widget.text}
+                        id="{widget.id}paragraph"
                           placeholder={"Paragraph text"}
                           ref={node => inputElem = node}></textarea>
                 {<WidgetNameField widget={widget}
@@ -97,7 +99,7 @@ const Paragraph = ({widget, preview, headingTextChanged, nameTextChanged}) => {
                 <h3>Preview</h3>
             </div>
             {widget.text !== "" && <div>{widget.text}</div>}
-            {widget.name && <div>widget name: {widget.name}</div>}
+            {/*{widget.name && <div>widget name: {widget.name}</div>}*/}
         </div>
     )
 }
@@ -111,8 +113,10 @@ const Image = ({widget, preview, urlChanged, nameTextChanged}) => {
         <div>
             <div hidden={preview}>
                 {/*<h2>Image</h2>*/}
+                <label htmlFor="{widget.id}image"> image url</label>
                 <input className="form-control" onChange={() => urlChanged(widget.id, inputElem.value)}
                     // value={widget.text}
+                    id="{widget.id}image"
                        placeholder={"Image URL"}
                        ref={node => inputElem = node}/>
                 {<WidgetNameField widget={widget}
@@ -120,7 +124,7 @@ const Image = ({widget, preview, urlChanged, nameTextChanged}) => {
                 <h3>Preview</h3>
             </div>
                 {widget.src && <img src={widget.src}/>}
-                {widget.name && <div>widget name: {widget.name}</div>}
+                {/*{widget.name && <div>widget name: {widget.name}</div>}*/}
 
         </div>
     )
@@ -168,12 +172,15 @@ const List = ({widget, preview, listTextChanged, listTypeChanged, nameTextChange
         <div>
             <div hidden={preview}>
                 {/*<h2> List </h2>*/}
+                    <label htmlFor="{widget.id}list"> list text</label>
                     <textarea className="form-control" onChange={() => listTextChanged(widget.id, inputElem.value)}
                               placeholder={"Enter one list item per line"}
+                              id="{widget.id}list"
                               value = {widget.listItems}
                               ref={node => inputElem = node}></textarea>
+                    <label htmlFor="{widget.id}type"> list type</label>
                     <select className="form-control" onChange={() => listTypeChanged(widget.id, selectElem.value)}
-
+                            id="{widget.id}type"
                             value={widget.listType}
                             ref={node => selectElem = node}>{console.log(widget)}
                     <option value="unordered">Unordered list</option>
@@ -191,7 +198,7 @@ const List = ({widget, preview, listTextChanged, listTypeChanged, nameTextChange
             {widget.listItems && widget.listType == "ordered" && <OrderedListField widget={widget}/>}
         {console.log(widget)}
 
-        {widget.name && <div>widget name: {widget.name}</div>}
+        {/*{widget.name && <div>widget name: {widget.name}</div>}*/}
     </div>
 
     )
@@ -208,14 +215,18 @@ const Link = ({widget, preview, hrefChanged, headingTextChanged, nameTextChanged
             <div hidden={preview}>
                 {/*<h2>Link</h2>*/}
                     <div>
+                        <label htmlFor="{widget.id}url"> link url</label>
                         <input className="form-control" onChange={() => hrefChanged(widget.id, inputHref.value)}
                             // value={widget.text}
+                                id="{widget.id}url"
                                placeholder={"Link URL"}
                                ref={node => inputHref = node}/>
                     </div>
                     <div>
+                        <label htmlFor="{widget.id}text"> link text</label>
                         <input className="form-control" onChange={() => headingTextChanged(widget.id, inputElem.value)}
                             // value={widget.text}
+                               id="{widget.id}text"
                                placeholder={"Link text"}
                                ref={node => inputElem = node}/>
                     </div>
@@ -228,7 +239,7 @@ const Link = ({widget, preview, hrefChanged, headingTextChanged, nameTextChanged
 
             {<a href={widget.href}>{widget.text}</a>}
             {widget.text !== "" && <div>{widget.text}</div>}
-            {widget.name && <div>widget name: {widget.name}</div>}
+            {/*{widget.name && <div>widget name: {widget.name}</div>}*/}
         </div>
     )
 }

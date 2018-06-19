@@ -42,12 +42,12 @@ class WidgetList extends Component {
                             <div className="col-sm-8 my-1">
                             </div>
                             <div className="col-auto my-1">
-                                <button hidden={this.props.previewMode} onClick={() => this.props.save(this.props.topicId)}>
+                                <button type="button" hidden={this.props.previewMode} onClick={() => this.props.save(this.props.topicId)}>
                                 Save
                                 </button>
                             </div>
                             <div className="col-auto my-1">
-                                <button onClick={this.props.preview}>
+                                <button type="button" onClick={this.props.preview}>
                                     Preview
                                 </button>
                             </div>
